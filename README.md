@@ -5,11 +5,3 @@
 3 Word Cloud - I created word clouds based on the feedback I received from my Analytics workshops <br />
 
 
-Word Clouds Based on over 100 student reviews for an Introduction to Data Analytics Workshop I teach. <br /> <br /> <br /> <br /> <br />
-
-
-![instructor word cloud with just adjectives](https://user-images.githubusercontent.com/59898455/138604998-10b339c4-b16d-4878-8cd0-f4d11213612b.png)
-
-
-![Class Word Cloud Final](https://user-images.githubusercontent.com/59898455/138604926-8172f1c8-f039-4207-bea0-ca29e40e5442.png)
-
