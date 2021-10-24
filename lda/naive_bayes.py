@@ -50,75 +50,9 @@ print(accuracy_score(y_test, pred))
 
 print(classification_report(y_test, pred))
 
-#Cross Validation Stuff
+#Cross Validation
 x_vector = v.fit_transform(x)
 cross_val = cross_val_score(clf, x_vector, y, cv = 10)
 print(cross_val)
-
-
-
-
-
-
-#cv = KFold(n_splits=3, shuffle=True, random_state=42)
-
-#blyat = cross_val_score(clf, x_train_vector.toarray(), y_train, cv = 10)
-#pizdets = cross_val_score(clf, x_train_vector, y_train, cv = 10)
-#cross_val_score(clf, x_train_vector.toarray(), y_test)
-
-
-#cross_val_score(clf, iris.data, iris.target, cv=10)
-#print(x_test_vector.toarray().shape)
-#print(x_test_vector)
-
-#print(v.fit_transform(x_test).toarray().shape)
-#print(x_train_vector.toarray().shape)
-
-#df = pd.DataFrame(columns=['y_actu','y_pred'])
-
-#df_confusion = pd.crosstab(y_actu, y_pred, rownames=['Actual'], colnames=['Predicted'], margins=True)
-#print(df_confusion)
-
-
-#df_confusion.to_csv('confusion.csv')
-
-#print(x_train_vector.toarray().shape)
-#print(x_train_vector)
-#x_train_test = v.fit(x_train)
-# print(x_train_vector)
-# print(v.vocabulary_)
-
-
-
-
-
-
-#x_train_blyat = pd.DataFrame(x_train_vector.toarray(),columns = v.get_feature_names())
-#x_train_blyat.to_csv('x_train_blyat.csv')
-
-
-                    
-#,
-
-
-
-#print(x_train_test)
-# print(x_train_vector)
-# print(v.vocabulary)
-# print(x.shape)
-# 
-# to_csv()
-
-
-
-# training a Naive Bayes classifier 
-#model = GaussianNB().fit(x_train, y_train) 
-# predictions = gnb.predict(x_test)
- 
-#confusion matrix
-# cm = confusion_matrix(y_test, predictions)
-# print(cm) 
-
-
  
 
