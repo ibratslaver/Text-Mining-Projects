@@ -51,7 +51,6 @@ df1 = pd.DataFrame(zip(big_list), columns = ['review_text'])
 #convert list to string
 df1['review_text_clean']= df1['review_text'].apply(listToString)
 
-#print(df1['review_text_clean'])
 
 #delete review_text column
 df1 = df1.drop('review_text', axis=1)
@@ -86,224 +85,159 @@ df_vaderized['review_year'] = df_vaderized['review_date'].dt.year
 
 # #line charts for each professor by department
 # for (groupname,subdf) in df_vaderized.groupby('department'):
-#     subdf = pd.pivot_table(subdf, values="vader_compound", index='review_year', columns='professor_name')
-#     subdf.plot(title=groupname, subplots=True)
-#     plt.ylabel("vader_compound")
-#     plt.savefig(groupname +  " - " +  "Sentiment by Professor")
+    subdf = pd.pivot_table(subdf, values="vader_compound", index='review_year', columns='professor_name')
+    subdf.plot(title=groupname, subplots=True)
+    plt.ylabel("vader_compound")
+    plt.savefig(groupname +  " - " +  "Sentiment by Professor")
 
 # #histogram for each professor seperate
-# for (groupname, department), subdf in df_vaderized.groupby(['professor_name','department']):
-#     subdf.hist(column="vader_compound")
-#     plt.title(groupname + ' - ' + department)
-#     plt.ylabel('frequency')
-#     plt.xlabel('vader_compound')
+for (groupname, department), subdf in df_vaderized.groupby(['professor_name','department']):
+    subdf.hist(column="vader_compound")
+    plt.title(groupname + ' - ' + department)
+    plt.ylabel('frequency')
+    plt.xlabel('vader_compound')
 
 # #histogram for each department, seperate
-# for (groupname, subdf) in df_vaderized.groupby(['department']):
-#     subdf.hist(column="vader_compound")
-#     plt.title(groupname)
-#     plt.ylabel('frequency')
-#     plt.xlabel('vader_compound')
-#     plt.savefig(groupname + " - " + "Histogram by Department")
+for (groupname, subdf) in df_vaderized.groupby(['department']):
+    subdf.hist(column="vader_compound")
+    plt.title(groupname)
+    plt.ylabel('frequency')
+    plt.xlabel('vader_compound')
+    plt.savefig(groupname + " - " + "Histogram by Department")
 
 # #scatterplot for each professor
 
 # # #set colors
-# colors = ['blue','red','green','purple','orange','black']
-# color_index = 0
+colors = ['blue','red','green','purple','orange','black']
+color_index = 0
 
 # for color, (groupname, subdf) in zip(colors,df_vaderized.groupby('professor_name')):
-#     plt.scatter(x=subdf['vader_pos'], y = subdf['vader_neg'], color=colors[color_index])
-#     plt.title(groupname)
-#     color_index+=1
+    plt.scatter(x=subdf['vader_pos'], y = subdf['vader_neg'], color=colors[color_index])
+    plt.title(groupname)
+    color_index+=1
 
 # #scatter plot for each department
-# for color, (groupname, subdf) in zip(colors,df_vaderized.groupby('department')):
-#         for (profname, subsubdf) in subdf.groupby('professor_name'):
-#             plt.scatter(subsubdf['vader_pos'], subsubdf['vader_neg'],c=subsubdf['professor_name'])
-#             plt.label(profname)
-#             plt.title(groupname)
-#             plt.show()
+for color, (groupname, subdf) in zip(colors,df_vaderized.groupby('department')):
+        for (profname, subsubdf) in subdf.groupby('professor_name'):
+            plt.scatter(subsubdf['vader_pos'], subsubdf['vader_neg'],c=subsubdf['professor_name'])
+            plt.label(profname)
+            plt.title(groupname)
+            plt.show()
 
 
 # #WORD CLOUD - SARAH WILEY, HISTORY, 2009, LOW, N = 20
-# df_sarah_wiley = df_vaderized[(df_vaderized['review_year']==2009) & (df_vaderized['professor_name'] =='Sarah Wiley')]
-# combined = []
+df_sarah_wiley = df_vaderized[(df_vaderized['review_year']==2009) & (df_vaderized['professor_name'] =='Sarah Wiley')]
+combined = []
 
 # for ind in df_sarah_wiley.index:
-#     sentence = df_sarah_wiley['review_text_clean'][ind]
-#     combined.append(sentence)
+    sentence = df_sarah_wiley['review_text_clean'][ind]
+    combined.append(sentence)
    
 # combined = ' '.join(combined)
 
 # cloud = WordCloud(background_color = "white").generate(combined)
-# plt.imshow(cloud)
-# plt.show()
+plt.imshow(cloud)
+plt.show()
 
 
 # #WORD CLOUD - ARLENE CASIPLE, MATH, 2008, LOW, N=23
-# df_arlene_caspile = df_vaderized[(df_vaderized['review_year']==2008) & (df_vaderized['professor_name'] =='Arlene Casiple')]
+df_arlene_caspile = df_vaderized[(df_vaderized['review_year']==2008) & (df_vaderized['professor_name'] =='Arlene Casiple')]
 
-# combined = []
+combined = []
 
 # for ind in df_arlene_caspile.index:
-#     sentence = df_arlene_caspile['review_text_clean'][ind]
-#     combined.append(sentence)
+    sentence = df_arlene_caspile['review_text_clean'][ind]
+    combined.append(sentence)
    
-# combined = ' '.join(combined)
+combined = ' '.join(combined)
 
 # cloud = WordCloud(background_color = "white").generate(combined)
-# plt.imshow(cloud)
-# plt.show()
+plt.imshow(cloud)
+plt.show()
 
 
 # #WORD CLOUD - SEAN DAVIS, COMPUTER SCIENCE, 2008, HIGH, N=8
-# df_sean_davis = df_vaderized[(df_vaderized['review_year']==2008) & (df_vaderized['professor_name'] =='Sean Davis')]
+df_sean_davis = df_vaderized[(df_vaderized['review_year']==2008) & (df_vaderized['professor_name'] =='Sean Davis')]
 
-# combined = []
+combined = []
 
-# for ind in df_sean_davis.index:
-#     sentence = df_sean_davis['review_text_clean'][ind]
-#     combined.append(sentence)
+for ind in df_sean_davis.index:
+    sentence = df_sean_davis['review_text_clean'][ind]
+    combined.append(sentence)
    
-# combined = ' '.join(combined)
+combined = ' '.join(combined)
 
-# cloud = WordCloud(background_color = "white").generate(combined)
-# plt.imshow(cloud)
-# plt.show()
+cloud = WordCloud(background_color = "white").generate(combined)
+plt.imshow(cloud)
+plt.show()
 
 # #WORD CLOUD - KIM LUTTON, SOCIOLOGY, 2011, HIGH, N=18
-# df_kim_luton = df_vaderized[(df_vaderized['review_year']==2011) & (df_vaderized['professor_name'] =='Kim Luton')]
+df_kim_luton = df_vaderized[(df_vaderized['review_year']==2011) & (df_vaderized['professor_name'] =='Kim Luton')]
 
-# combined = []
+combined = []
 
-# for ind in df_kim_luton.index:
-#     sentence = df_kim_luton['review_text_clean'][ind]
-#     combined.append(sentence)
+for ind in df_kim_luton.index:
+    sentence = df_kim_luton['review_text_clean'][ind]
+    combined.append(sentence)
    
-# combined = ' '.join(combined)
+combined = ' '.join(combined)
 
-# cloud = WordCloud(background_color = "white").generate(combined)
-# plt.imshow(cloud)
-# plt.show()
+cloud = WordCloud(background_color = "white").generate(combined)
+plt.imshow(cloud)
+plt.show()
 
 
 # # #WORD CLOUD - Steven Scarborough, Math, 2010, HIGH, N=15
-# df_steve_scar = df_vaderized[(df_vaderized['review_year']==2010) & (df_vaderized['professor_name'] =='Stephen Scarborough')]
+df_steve_scar = df_vaderized[(df_vaderized['review_year']==2010) & (df_vaderized['professor_name'] =='Stephen Scarborough')]
 
-# combined = []
+combined = []
 
 # for ind in df_steve_scar.index:
-#     sentence = df_steve_scar['review_text_clean'][ind]
-#     combined.append(sentence)
+    sentence = df_steve_scar['review_text_clean'][ind]
+    combined.append(sentence)
    
-# combined = ' '.join(combined)
+combined = ' '.join(combined)
 
-# cloud = WordCloud(background_color = "white").generate(combined)
-# plt.imshow(cloud)
-# plt.show()
+cloud = WordCloud(background_color = "white").generate(combined)
+plt.imshow(cloud)
+plt.show()
 
 
 # #WORD CLOUD - Steven Scarborough, Math, 2010, HIGH, N=15
-# df_steve_scar = df_vaderized[(df_vaderized['review_year']==2010) & (df_vaderized['professor_name'] =='Stephen Scarborough')]
+df_steve_scar = df_vaderized[(df_vaderized['review_year']==2010) & (df_vaderized['professor_name'] =='Stephen Scarborough')]
 
-# combined = []
+combined = []
 
 # for ind in df_steve_scar.index:
-#     sentence = df_steve_scar['review_text_clean'][ind]
-#     combined.append(sentence)
+    sentence = df_steve_scar['review_text_clean'][ind]
+    combined.append(sentence)
    
-# combined = ' '.join(combined)
+combined = ' '.join(combined)
 
 # cloud = WordCloud(background_color = "white").generate(combined)
-# plt.imshow(cloud)
-# plt.show()
+plt.imshow(cloud)
+plt.show()
 
-# color_map = {'a': 'r', 'b': 'b', 'c': 'y'}
-# ax = plt.subplot()
-# x, y = df.cpu, df.wait
-# colors = df.category.map(color_map)
-# colors = ['r','r','r','y','y','b']
+color_map = {'a': 'r', 'b': 'b', 'c': 'y'}
+ax = plt.subplot()
+x, y = df.cpu, df.wait
+colors = df.category.map(color_map)
+colors = ['r','r','r','y','y','b']
 
-# plt.scatter(x, y, c = df.time)
-# plt.show()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+plt.scatter(x, y, c = df.time)
+plt.show()
 
 
 #Histograms for each of the sentiments
-# plt.hist(df_vaderized['vader_pos'],color='green')
-# plt.title("Positive Sentiment")
-# plt.show()
+plt.hist(df_vaderized['vader_pos'],color='green')
+plt.title("Positive Sentiment")
+plt.show()
 
-# plt.hist(df_vaderized['vader_compound'],color='blue')
-# plt.title("Compound Sentiment")
-# plt.show()
+plt.hist(df_vaderized['vader_compound'],color='blue')
+plt.title("Compound Sentiment")
+plt.show()
 
-# plt.hist(df_vaderized['vader_neg'],color='red')
-# plt.title("Negative Sentiment")
-# plt.show()
+plt.hist(df_vaderized['vader_neg'],color='red')
+plt.title("Negative Sentiment")
+plt.show()
 
-
-#Option 1, this still creates a stacked bar chart but straight from the group by
-# df_vaderized.groupby(df_vaderized['Date']).vader_compound.mean().plot(kind='bar', color='green')
-# df_vaderized.groupby(df_vaderized['Date']).vader_pos.mean().plot(kind='bar', color='red')
-# df_vaderized.groupby(df_vaderized['Date']).vader_neg.mean().plot(kind='bar',color='blue')
-
-# #Option 2: Turn the series into a dataframe
-# compound_series = df_vaderized.groupby(df_vaderized['Date']).vader_compound.mean()
-# pos_series = df_vaderized.groupby(df_vaderized['Date']).vader_pos.mean()
-# neg_series = df_vaderized.groupby(df_vaderized['Date']).vader_neg.mean()
-
-# df = pd.DataFrame({'Date':compound_series.index, 'compound_mean':compound_series.values})
-# df1 = pd.DataFrame({'Date':pos_series.index, 'pos_mean':pos_series.values})
-# df2 = pd.DataFrame({'Date':neg_series.index, 'neg_mean':neg_series.values})
-
-# df['Date'] = df['Date'].dt.strftime('%Y-%m')
-# df1['Date'] = df1['Date'].dt.strftime('%Y-%m')
-# df2['Date'] = df2['Date'].dt.strftime('%Y-%m')
-
-# #Create bar chart
-# x = df.Date
-# y = df.compound_mean
-
-# x1 = df1.Date
-# y1 = df1.pos_mean
-
-# x2 = df2.Date
-# y2 = df2.neg_mean
-
-# N = 9
-# width = .35
-# ind = np.arange(N) 
-
-# print(ind)
-
-# plt.bar(ind, y, width, label = 'Compound')
-# plt.bar(ind + width, y1, width, label = 'Pos',)
-# plt.bar(ind + width*2, y2, width, label = 'Neg')
-
-# plt.xticks(ind + width / 2, df.Date)
-# plt.legend(loc='best')
