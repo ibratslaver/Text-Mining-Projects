@@ -3,3 +3,7 @@
 1 LDA - Latent dirichlet allocation, this is a technique used to do topic modeling, enabling the "identification" of topics in a collection of documents (professor reviews) <br />
 2 Sentiment Analysis - I applied sentiment analysis to student reviews <br />
 3 Word Cloud - I created word clouds based on the feedback I received from my Analytics workshops <br />
+
+
+
+![Class Word Cloud Final](https://user-images.githubusercontent.com/59898455/138604926-8172f1c8-f039-4207-bea0-ca29e40e5442.png)
